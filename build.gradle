@@ -1,14 +1,23 @@
+package lesson2;
+
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
-public class SearchTests {
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
+
+
+public class DZ2 {
     @Test
-    void successfulSearchTest() {
-        open("https://www.google.com/");
-        $("[name=q]").setValue("selenide").pressEnter();
-        $("[id=search]").shouldHave(text("https://ru.selenide.org"));
+    void findSoftAssertions(){
+        open("https://github.com/");
+        $("[name=q]").setValue("Selenide").pressEnter();
+        $(".container-lg").$(byText("Wikis")).click();
+        $("#wiki_search_results").$(byText("SoftAssertions")).
+                shouldHave(text("SoftAssertions")).click();
+        $$(".markdown-body li").get(1).shouldHave(text("JUnit4 rule"));
+
     }
+
 }
